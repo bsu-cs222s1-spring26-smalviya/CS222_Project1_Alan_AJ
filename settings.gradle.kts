@@ -1,0 +1,1 @@
+rootProject.name = "CS222_Project1_Alan_AJ"
