@@ -4,12 +4,12 @@ import java.net.URISyntaxException;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
-import java.sql.Connection;
 
 public class WikipediaConnection {
 
     static void main(String[] args) {
         WikipediaConnection newConnection = new WikipediaConnection();
+
         System.out.println(newConnection.readJsonAsString());
     }
 

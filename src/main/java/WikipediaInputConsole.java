@@ -15,11 +15,8 @@ public class WikipediaInputConsole {
             input = inputScanner.nextLine();
 
             if(input == null || input == "") {
-                System.out.println("Input cannot be empty.. Try again.");
-            }
-            else if(input.equals("exit")) {
-                System.out.println("Exiting Program..");
-                running = false;
+                System.err.println("Input cannot be empty.. Quitting program..");
+                //System.exit(1);
             }
             else {
                 running = false;

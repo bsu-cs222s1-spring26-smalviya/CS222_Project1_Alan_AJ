@@ -5,9 +5,7 @@ public class Main {
 
         String searchName = console.getSearchNameInput();
 
-        if(!searchName.equals("exit")) {
-            connection.establishConnectionToWikipedia(searchName);
-            System.out.println(connection.readJsonAsString());
-        }
+        connection.establishConnectionToWikipedia(searchName);
+        System.out.println(connection.readJsonAsString());
     }
 }
