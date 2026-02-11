@@ -15,10 +15,6 @@ public class WikipediaConnection {
 
     private URLConnection connection;
 
-    public WikipediaConnection() {
-        establishConnectionToWikipedia("Babbage");
-    }
-
     public void establishConnectionToWikipedia(String keyWord) {
         try {
             String encodedUrlString = ProgramSettings.WIKILINK +

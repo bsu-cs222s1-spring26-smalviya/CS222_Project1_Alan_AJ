@@ -3,7 +3,11 @@ public class Main {
         WikipediaInputConsole console = new WikipediaInputConsole();
         WikipediaConnection connection = new WikipediaConnection();
 
-        connection.establishConnectionToWikipedia(console.getSearchNameInput());
-        System.out.println(connection.readJsonAsString());
+        String searchName = console.getSearchNameInput();
+
+        if(!searchName.equals("exit")) {
+            connection.establishConnectionToWikipedia(searchName);
+            System.out.println(connection.readJsonAsString());
+        }
     }
 }
