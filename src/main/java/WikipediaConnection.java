@@ -16,13 +16,13 @@ public class WikipediaConnection {
     private URLConnection connection;
 
     public WikipediaConnection() {
-        establishConnectionToWikipedia();
+        establishConnectionToWikipedia("Babbage");
     }
 
-    private void establishConnectionToWikipedia() {
+    public void establishConnectionToWikipedia(String keyWord) {
         try {
             String encodedUrlString = ProgramSettings.WIKILINK +
-                    URLEncoder.encode("Babbage", Charset.defaultCharset()) + "&rvprop=timestamp" +
+                    URLEncoder.encode(keyWord, Charset.defaultCharset()) + "&rvprop=timestamp" +
                     URLEncoder.encode("|",Charset.defaultCharset()) + "user&rvlimit=4&redirects";
             URI uri = new URI(encodedUrlString);
             connection = uri.toURL().openConnection();
