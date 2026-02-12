@@ -7,12 +7,6 @@ import java.nio.charset.Charset;
 
 public class WikipediaConnection {
 
-    static void main(String[] args) {
-        WikipediaConnection newConnection = new WikipediaConnection();
-
-        System.out.println(newConnection.readJsonAsString());
-    }
-
     private URLConnection connection;
 
     public void establishConnectionToWikipedia(String keyWord) {

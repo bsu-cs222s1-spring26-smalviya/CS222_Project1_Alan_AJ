@@ -2,10 +2,6 @@ import java.util.Scanner;
 
 public class WikipediaInputConsole {
 
-    public WikipediaInputConsole() {
-
-    }
-
     public String getSearchNameInput() {
         Scanner inputScanner = new Scanner(System.in);
         String input = "";
@@ -14,9 +10,8 @@ public class WikipediaInputConsole {
             System.out.print("Enter a name (Type exit to exit): ");
             input = inputScanner.nextLine();
 
-            if(input == null || input == "") {
+            if(input.isEmpty()) {
                 System.err.println("Input cannot be empty.. Quitting program..");
-                //System.exit(1);
             }
             else {
                 running = false;
