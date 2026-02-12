@@ -21,8 +21,10 @@ public class WikipediaPage {
             return "No revisions to show!";
         }
         String output = title;
+        int lineCounter = 1;
         for(PageRevision revision : revisions) {
-            output += "\n[" + revision.getTimeStamp() + "]" + " " + revision.getUser();
+            output += "\n" + lineCounter + ")  [" + revision.getTimeStamp() + "]" + "  " + revision.getUser();
+            lineCounter++;
         }
 
         return output;
