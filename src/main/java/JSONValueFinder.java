@@ -9,35 +9,19 @@ public class JSONValueFinder {
         jsonObject = new JSONObject(json);
     }
 
-    public JSONValueFinder nextKey(String nextKey) {
-        try {
-            jsonObject = new JSONObject(jsonObject.get(nextKey).toString());
-        } catch(JSONException e) {
-            System.err.println("A path in the JSON does not exist");
-        }
+    public JSONValueFinder nextKey(String nextKey) throws JSONException {
+        jsonObject = new JSONObject(jsonObject.get(nextKey).toString());
         return this;
     }
 
-    public JSONValueFinder nextKey() {
-        try {
-            String nextKey = jsonObject.keys().next().toString();
-            jsonObject = new JSONObject(jsonObject.get(nextKey).toString());
-        } catch(JSONException e) {
-            System.err.println("A path in the JSON does not exist");
-        }
+    public JSONValueFinder nextKey() throws JSONException {
+        String nextKey = jsonObject.keys().next().toString();
+        jsonObject = new JSONObject(jsonObject.get(nextKey).toString());
         return this;
     }
 
-    public Object getJSONValue(String finalKey) {
-        Object object = null;
-
-        try {
-            object = jsonObject.get(finalKey);
-        } catch(JSONException e) {
-            System.err.println("A path in the JSON does not exist");
-        }
-
-        return object;
+    public Object getJSONValue(String finalKey) throws JSONException {
+        return jsonObject.get(finalKey);
     }
 
     public JSONObject getJsonObject() {
