@@ -20,13 +20,13 @@ public class WikipediaPage {
         if(revisions.length == 0) {
             return "No revisions to show!";
         }
-        String output = title;
+        StringBuilder output = new StringBuilder(title);
         int lineCounter = 1;
         for(PageRevision revision : revisions) {
-            output += "\n" + lineCounter + ")  [" + revision.getTimeStamp() + "]" + "  " + revision.getUser();
+            output.append("\n").append(lineCounter).append(")  [").append(revision.getTimeStamp()).append("]").append("  ").append(revision.getUser());
             lineCounter++;
         }
 
-        return output;
+        return output.toString();
     }
 }
