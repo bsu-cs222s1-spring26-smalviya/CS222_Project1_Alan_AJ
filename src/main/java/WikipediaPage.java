@@ -20,11 +20,11 @@ public class WikipediaPage {
         if(revisions.length == 0) {
             return "No revisions to show!";
         }
-        String output = title;
+        StringBuilder output = new StringBuilder(title);
         for(PageRevision revision : revisions) {
-            output += "\n[" + revision.getTimeStamp() + "]" + " " + revision.getUser();
+            output.append("\n[").append(revision.getTimeStamp()).append("]").append(" ").append(revision.getUser());
         }
 
-        return output;
+        return output.toString();
     }
 }

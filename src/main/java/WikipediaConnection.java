@@ -1,26 +1,25 @@
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URLConnection;
-import java.net.URLEncoder;
+import java.net.*;
 import java.nio.charset.Charset;
 
 public class WikipediaConnection {
 
     private URLConnection connection;
 
-    public void establishConnectionToWikipedia(String keyWord) {
+    public boolean establishConnectionToWikipedia(String keyWord, int numberOfRedirects) {
         try {
             String encodedUrlString = ProgramSettings.WIKILINK +
                     URLEncoder.encode(keyWord, Charset.defaultCharset()) + "&rvprop=timestamp" +
-                    URLEncoder.encode("|",Charset.defaultCharset()) + "user&rvlimit=4&redirects";
+                    URLEncoder.encode("|",Charset.defaultCharset()) + "user&rvlimit=" + numberOfRedirects + "&redirects";
+
             URI uri = new URI(encodedUrlString);
             connection = uri.toURL().openConnection();
-            connection.setRequestProperty("User-Agent",
-                    "FirstProject/0.1 (academic use; https://example.com)");
+            connection.setRequestProperty("User-Agent", "FirstProject/0.1 (academic use; https://example.com)");
             connection.connect();
+            return true;
         } catch (IOException | URISyntaxException e) {
             System.out.println("Error");
+            return false;
         }
     }
 
