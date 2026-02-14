@@ -1,5 +1,4 @@
 public class PageRevision {
-
     private final String user;
     private final String timeStamp;
 
