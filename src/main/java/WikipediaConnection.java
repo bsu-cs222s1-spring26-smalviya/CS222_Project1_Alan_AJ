@@ -18,7 +18,7 @@ public class WikipediaConnection {
             connection.connect();
             return true;
         } catch (IOException | URISyntaxException e) {
-            System.out.println("Error");
+            System.err.println("There was an error finding the page. Check your network settings or correct your search parameter.");
             return false;
         }
     }
