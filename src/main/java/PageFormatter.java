@@ -7,12 +7,18 @@ public class PageFormatter {
     public String formatPageTitle(String json){
         String format = "";
         try {
-            String jsonKey = new JSONValueFinder(json).nextValue("query").getJSONValue("redirects");
-            JSONObject redirectTo = new JSONObject(new JSONArray(jsonKey).get(0).toString());
-            format = "Redirecting to " + redirectTo.get("to").toString();
-            format = new JSONValueFinder(json).nextValue("query").nextValue("pages").nextValue().getJSONValue("title");
+            boolean hasRedirect = new JSONValueFinder(json).nextValue("query").keyExists("redirects");
+            if(hasRedirect) {
+                String redirectKey = new JSONValueFinder(json).nextValue("query").getJSONValue("redirects");
+                JSONObject redirectTo = new JSONObject(new JSONArray(redirectKey).get(0).toString());
+                format = "Redirected to " + redirectTo.get("to").toString();
+            }
+            else {
+                format = new JSONValueFinder(json).nextValue("query").nextValue("pages").nextValue().getJSONValue("title");
+            }
         } catch (JSONException | NullPointerException e) {
-
+            System.err.println("Unable to read the title..");
+            System.exit(0);
         }
         return format;
     }
