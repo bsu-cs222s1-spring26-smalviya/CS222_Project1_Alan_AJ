@@ -1,4 +1,5 @@
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -6,9 +7,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class Main extends Application {
     static void main(String[] args) {
@@ -16,7 +14,11 @@ public class Main extends Application {
         console.runConsole();
     }
 
+    @Override
     public void start(Stage primaryStage) throws Exception {
+        WikipediaInputConsole uiConsole = new WikipediaInputConsole();
+        uiConsole.runConsole();
+
         VBox parent = new VBox();
         parent.getChildren().add(new Label("Wikipedia Revisions Finder"));
 
@@ -27,10 +29,14 @@ public class Main extends Application {
 
         Button button = new Button("Search for Revisions!");
         parent.getChildren().add(button);
-
+        button.setOnAction(event -> newActionEvent());
         Scene scene = new Scene(parent, 400, 400);
 
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    public void newActionEvent() {
+        System.out.println("Pressed");
     }
 }
