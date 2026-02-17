@@ -30,7 +30,7 @@ public class Main extends Application {
         Button button = new Button("Search for Revisions!");
         parent.getChildren().add(button);
         button.setOnAction(event -> newActionEvent());
-        Scene scene = new Scene(parent, 400, 400);
+        Scene scene = new Scene(parent, 400, 200);
 
         primaryStage.setScene(scene);
         primaryStage.show();
