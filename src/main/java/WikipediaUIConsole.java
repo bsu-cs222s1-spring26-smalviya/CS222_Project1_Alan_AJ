@@ -29,7 +29,6 @@ public class WikipediaUIConsole implements ConsoleOptions{
         urlBox.getChildren().add(submitButton);
         urlBox.setAlignment(Pos.CENTER);
 
-        parentBox.getChildren().add(new Label("Wikipedia Revision Finder"));
         parentBox.getChildren().add(urlBox);
         parentBox.getChildren().add(revisionOutputArea);
 
@@ -39,7 +38,8 @@ public class WikipediaUIConsole implements ConsoleOptions{
 
     @Override
     public void runConsole(Stage primaryStage) {
-        Scene scene = new Scene(parentBox, 400, 200);
+        primaryStage.setTitle("Wikipedia Revision Finder");
+        Scene scene = new Scene(parentBox, 500, 200);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -50,18 +50,33 @@ public class WikipediaUIConsole implements ConsoleOptions{
         PageFormatter formatter = new PageFormatter();
 
         if(!connection.establishConnectionToWikipedia(keyPhrase, ProgramSettings.MAX_NUMBER_OF_REVISIONS)) {
-            revisionOutputArea.appendText("The input given does not go to a Wikipedia page.\n");
-            revisionOutputArea.appendText("Additionally, if you know your input is correct, check your network settings.");
+            errorWindow("Connection Error", "The input given does not go to a Wikipedia page.\nAdditionally, if you know your input is correct, check your network settings.");
             return;
         }
 
         String connectedJson = connection.readJsonAsString();
         if(!formatter.isValidPage(connectedJson)) {
-            revisionOutputArea.appendText("The page connected, however, there was an error parsing the information.");
+            errorWindow("Parsing Error","The page connected, however, there was an error parsing the information.");
             return;
         }
 
         WikipediaPage page = formatter.setupWikipediaPage(connectedJson);
         revisionOutputArea.appendText(page.printPageInformation());
+    }
+
+    private void errorWindow(String title, String message) {
+        Stage stage = new Stage();
+        stage.setTitle(title);
+
+        Label label = new Label(message);
+        label.setWrapText(true);
+
+        VBox layout = new VBox(15, label);
+        layout.setAlignment(Pos.CENTER);
+        layout.setPrefSize(400, 150);
+
+        Scene scene = new Scene(layout);
+        stage.setScene(scene);
+        stage.show();
     }
 }
