@@ -24,6 +24,8 @@ public class WikipediaUIConsole implements ConsoleOptions{
         textField = new TextField();
         submitButton = new Button("Submit");
         revisionOutputArea = new TextArea();
+        revisionOutputArea.setPrefWidth(100);
+        revisionOutputArea.setPrefHeight(300);
 
         urlBox.getChildren().add(textField);
         urlBox.getChildren().add(submitButton);
@@ -39,7 +41,7 @@ public class WikipediaUIConsole implements ConsoleOptions{
     @Override
     public void runConsole(Stage primaryStage) {
         primaryStage.setTitle("Wikipedia Revision Finder");
-        Scene scene = new Scene(parentBox, 500, 200);
+        Scene scene = new Scene(parentBox, 500, 350);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
