@@ -51,6 +51,11 @@ public class WikipediaUIConsole implements ConsoleOptions{
         WikipediaConnection connection = new WikipediaConnection();
         PageFormatter formatter = new PageFormatter();
 
+        if(keyPhrase.isEmpty()) {
+            errorWindow("Input Error", "The input cannot be empty.");
+            return;
+        }
+
         if(!connection.establishConnectionToWikipedia(keyPhrase, ProgramSettings.MAX_NUMBER_OF_REVISIONS)) {
             errorWindow("Connection Error", "The input given does not go to a Wikipedia page.\nAdditionally, if you know your input is correct, check your network settings.");
             return;
