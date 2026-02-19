@@ -80,9 +80,8 @@ public class WikipediaUIConsole implements ConsoleOptions{
 
         VBox layout = new VBox(label);
         layout.setAlignment(Pos.CENTER);
-        layout.setPrefSize(375, 265);
 
-        Scene scene = new Scene(layout);
+        Scene scene = new Scene(layout, 375, 265);
         stage.setScene(scene);
         stage.show();
     }
