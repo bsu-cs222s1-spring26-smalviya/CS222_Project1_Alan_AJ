@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 
 public class WikipediaUIConsole implements ConsoleOptions{
 
+    private Label programTitleLabel;
     private VBox parentBox;
     private HBox urlBox;
     private TextField textField;
@@ -24,11 +25,11 @@ public class WikipediaUIConsole implements ConsoleOptions{
         submitButton = new Button("Submit");
         revisionOutputArea = new TextArea();
 
-        //parentBox.getChildren().add(new Label("Wikipedia Revision Finder"));
         urlBox.getChildren().add(textField);
         urlBox.getChildren().add(submitButton);
         urlBox.setAlignment(Pos.CENTER);
 
+        parentBox.getChildren().add(new Label("Wikipedia Revision Finder"));
         parentBox.getChildren().add(urlBox);
         parentBox.getChildren().add(revisionOutputArea);
 
