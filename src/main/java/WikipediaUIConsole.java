@@ -78,9 +78,9 @@ public class WikipediaUIConsole implements ConsoleOptions{
         Label label = new Label(message);
         label.setWrapText(true);
 
-        VBox layout = new VBox(15, label);
+        VBox layout = new VBox(label);
         layout.setAlignment(Pos.CENTER);
-        layout.setPrefSize(400, 150);
+        layout.setPrefSize(375, 265);
 
         Scene scene = new Scene(layout);
         stage.setScene(scene);
