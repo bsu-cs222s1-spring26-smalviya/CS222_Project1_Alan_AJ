@@ -4,6 +4,13 @@ import org.json.JSONObject;
 
 public class PageFormatter {
 
+    public WikipediaPage setupWikipediaPage(String connectedJson) {
+        String title = formatPageTitle(connectedJson);
+        PageRevision[] revisions = formatPageRevisions(connectedJson);
+
+        return new WikipediaPage(title, revisions);
+    }
+
     public String formatPageTitle(String json){
         String format = "";
         try {
@@ -18,7 +25,6 @@ public class PageFormatter {
             }
         } catch (JSONException | NullPointerException e) {
             System.err.println("Unable to read the title..");
-            System.exit(0);
         }
         return format;
     }

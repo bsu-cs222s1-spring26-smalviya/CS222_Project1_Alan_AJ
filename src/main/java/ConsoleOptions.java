@@ -1,5 +1,7 @@
+import javafx.stage.Stage;
+
 public interface ConsoleOptions {
 
-    public void runConsole();
+    public void runConsole(Stage primaryStage);
 
 }

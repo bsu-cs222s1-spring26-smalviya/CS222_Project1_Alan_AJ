@@ -7,7 +7,10 @@ public class WikipediaInputConsole {
         String searchName = getSearchNameInput();
 
         if(connection.establishConnectionToWikipedia(searchName, ProgramSettings.MAX_NUMBER_OF_REVISIONS)) {
-            setupWikipediaPage(connection);
+            PageFormatter formatter = new PageFormatter();
+            String connectedJson = connection.readJsonAsString();
+            WikipediaPage page = formatter.setupWikipediaPage(connectedJson);
+            page.printPageInformation();
         }
     }
 
@@ -24,19 +27,5 @@ public class WikipediaInputConsole {
         }
 
         return input;
-    }
-
-    private void setupWikipediaPage(WikipediaConnection connection) {
-        PageFormatter formatter = new PageFormatter();
-        String connectedJson = connection.readJsonAsString();
-        if(!formatter.isValidPage(connectedJson)) {
-            System.exit(0);
-        }
-
-        String title = formatter.formatPageTitle(connectedJson);
-        PageRevision[] revisions = formatter.formatPageRevisions(connectedJson);
-
-        WikipediaPage page = new WikipediaPage(title, revisions);
-        System.out.println(page.printPageInformation());
     }
 }
